@@ -2,23 +2,6 @@ const express = require('express');
 const app = express();
 const port = process.env.PORT ||  3000;
 const cors = require('cors');
-// const path = require('path')
-const bodyParser = require('body-parser')
-const mongoose = require('mongoose')
-const Mobile = require('./model/mobile.js');
-
-// const bcrypt = require('bcryptjs')
-// const jwt = require('jsonwebtoken')
-app.use(bodyParser.json())
-try{
-mongoose.connect('mongodb://localhost:27017/xcheck', {
-	useNewUrlParser: true,
-	useUnifiedTopology: true,
-	useCreateIndex: true
-})
-}catch (error) {
-  console.log(error);
-}
 
 
 
@@ -48,15 +31,15 @@ app.get('/', (req, res) => {
   console.log('get funtion hit');
 })
 
-app.post('/search', async (req, res) => {
-  console.log(req.body);
-  const min = req.body.minvalue;
-  const max = req.body.maxvalue;
-  console.log(min, max);
-  var mobile = await Mobile.find({price: {$gte:min,$lte:max}  })
+// app.post('/search', async (req, res) => {
+//   console.log(req.body);
+//   const min = req.body.minvalue;
+//   const max = req.body.maxvalue;
+//   console.log(min, max);
+//   var mobile = await Mobile.find({price: {$gte:min,$lte:max}  })
   
-  res.send(mobile);
-})
+//   res.send(mobile);
+// })
 
 
 
