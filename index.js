@@ -8,7 +8,8 @@ const cors = require('cors');
 
 var allowedOrigins = [
   "https://braincodeishan.github.io",
-  "http://127.0.0.1:5500"
+  "http://127.0.0.1:5500",
+  "*"
 ];
 app.use(
   cors({
