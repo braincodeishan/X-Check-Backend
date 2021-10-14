@@ -43,6 +43,11 @@ app.get('/', (req, res) => {
 //   res.send(mobile);
 // })
 
+app.get('/mail-schedule', (req, res) => {
+  
+  res.send('Scheduled Successfully');
+  console.log('get funtion hit');
+})
 
 
 
