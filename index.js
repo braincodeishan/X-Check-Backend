@@ -1,21 +1,19 @@
 const express = require('express');
 const app = express();
-const port =  process.env.PORT || 3000;
-// sd
+const port =  process.env.PORT || 3001;
 const cors = require('cors');
-
+app.use(express.json())
+app.use(express.urlencoded());
 
 
 var allowedOrigins = [
   "https://braincodeishan.github.io",
-  "http://127.0.0.1:5500",
+  "http://localhost:3000",
   "*"
 ];
 app.use(
   cors({
     origin: function (origin, callback) {
-      // allow requests with no origin
-      // (like mobile apps or curl requests)
       if (!origin) return callback(null, true);
       if (allowedOrigins.indexOf(origin) === -1) {
         var msg =
@@ -31,17 +29,14 @@ app.use(
 app.get('/', (req, res) => {
   res.send('Hello World!');
   console.log('get funtion hit');
-})
+}) 
 
-// app.post('/search', async (req, res) => {
-//   console.log(req.body);
-//   const min = req.body.minvalue;
-//   const max = req.body.maxvalue;
-//   console.log(min, max);
-//   var mobile = await Mobile.find({price: {$gte:min,$lte:max}  })
-  
-//   res.send(mobile);
-// })
+app.post('/search', async (req, res) => {
+  console.log(req.body.price);
+  // var mobile = await Mobile.find({price: {$gte:min,$lte:max}  })
+  // res.send(mobile);
+  res.status(200).json("Data Received")
+})
 
 app.get('/mail-schedule', (req, res) => {
   
