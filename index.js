@@ -1,11 +1,18 @@
+// **************************Imports**********************
 const express = require('express');
 const app = express();
 const port =  process.env.PORT || 3001;
+const search = require('./Routes/search')
 const cors = require('cors');
+
+
+
+// **********************Middlewares***********************
 app.use(express.json())
 app.use(express.urlencoded());
+app.use('/search',search);
 
-
+// CORS Policies
 var allowedOrigins = [
   "https://braincodeishan.github.io",
   "http://localhost:3000",
@@ -26,24 +33,11 @@ app.use(
   })
 );
 
+// **************************Routes*************************
 app.get('/', (req, res) => {
-  res.send('Hello World!');
-  console.log('get funtion hit');
-}) 
-
-app.post('/search', async (req, res) => {
-  console.log(req.body.price);
-  // var mobile = await Mobile.find({price: {$gte:min,$lte:max}  })
-  // res.send(mobile);
-  res.status(200).json("Data Received")
-})
-
-app.get('/mail-schedule', (req, res) => {
+  res.status(400).json("Not Found")
   
-  res.send('Scheduled Successfully');
-  console.log('get funtion hit');
-})
-
+}) 
 
 
 
