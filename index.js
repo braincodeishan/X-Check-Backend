@@ -16,6 +16,7 @@ app.use('/search',search);
 var allowedOrigins = [
   "https://braincodeishan.github.io",
   "http://localhost:3000",
+  "https://teal-pony-51118a.netlify.app/",
   "*"
 ];
 app.use(
