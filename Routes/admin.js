@@ -2,7 +2,7 @@ const express= require('express');
 const router = express.Router();
 const cors= require('cors');
 const mongoose=require('mongoose');
-
+const mobilephone=require('../Modals/MobileData')
 var allowedOrigins = [
     "https://braincodeishan.github.io",
     "http://localhost:3000",
@@ -21,20 +21,22 @@ var allowedOrigins = [
     }
   })
 );
-
-
+  
 
 
 router
-.get('/',(req,res)=>{
-    console.log("Search get hit")
-  
-    res.status(200).json("Data Received")
+.get('/updateMobile',async(req,res)=>{
+    console.log("updateMobile hit")
+    const result=await mobilephone.findOne({isReviewed:false})
+    if(result){
+        // console.log(result);
+        res.status(200).json(result);
+    }else{
+        res.status(400).json("no data Found");
+    }
   })
-.post('/',(req,res)=>{
-  const filters=req.body;
-  console.log(filters);
-  
+.post('/updateMobile',(req,res)=>{
+    
   res.status(200).json("Data Received")
 })
 

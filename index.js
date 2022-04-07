@@ -3,14 +3,21 @@ const express = require('express');
 const app = express();
 const port =  process.env.PORT || 3001;
 const search = require('./Routes/search')
+const admin = require('./Routes/admin')
+const mongoose=require('mongoose');
 const cors = require('cors');
 
 
+const url = "mongodb+srv://braincodeishan:Mongodb_88822@cluster0.gicls.mongodb.net/GSMARENA?retryWrites=true&w=majority"
+mongoose.connect(url, () => {
+    console.log("connection successful to db");
+})
 
 // **********************Middlewares***********************
 app.use(express.json())
 app.use(express.urlencoded());
 app.use('/search',search);
+app.use('/admin',admin);
 
 // CORS Policies
 var allowedOrigins = [
@@ -33,13 +40,19 @@ app.use(
   })
 );
 
+
+
+
 // **************************Routes*************************
 app.get('/', (req, res) => {
   res.status(400).json("Not Found")
   
 }) 
 
-
+app.post('/feedMobileData',(req,res)=>{
+  console.log(req.body);
+  res.status(200).json("data received")
+})
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
