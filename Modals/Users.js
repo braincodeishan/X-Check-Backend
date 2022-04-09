@@ -7,38 +7,20 @@ const Myschema=new mongoose.Schema({
         unique:true,
         required:true
     },
-    personalInfo:{
-        name:String,
-        employeeID:Number,
-        dateOfBirth:Date,
-        email:String,
-        phoneNumber:Number,
-        alternateNumber:Number
+    name:{
+        type:String,
+        required:true
     },
-    professionalInfo:{
-        dateOfJoining:Date,
-        dateOfRetirement:Date,
-        cadre:String,
-        payScale:String,
-        basicPay:Number,
-        transferTaken:Number
+    dateOfBirth:Date,
+    email:{
+        type:String,
+        required:true
     },
-    
-    office:{
-        circle:String,
-        Region:String,
-        Division:String,
-        officeName:String,
-        officeID:Number,
+    phoneNumber:Number,
+    password:{
+        type:String,
+        required:true
     },
-    
-    leave:{
-        casualLeave:Number,
-        earnedLeave:Number,
-        RH:Number,
-        halfPayLeave:Number
-    },
-    password:String
 })
 
 const User=new mongoose.model('User',Myschema)
