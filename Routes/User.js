@@ -65,13 +65,6 @@ router.post('/register', async (req, res) => {
   console.log(req.body);
   const { username, name, email, mobile, password } = req.body;
   
-  if (!username) {
-    res.status(204).json({data: "Something went wrong" })
-  }
-  else if (username.length < 5) {
-    res.status(200).json({ data: "Username is small" })
-  }
-  else {
     try {
       const hash = await bcrypt.hash(password, 10);
       
@@ -91,7 +84,7 @@ router.post('/register', async (req, res) => {
     } catch (err) {
       res.status(404).json({ data: "Something went wrong" })
     }
-  }
+  
 })
 
 module.exports=router;
