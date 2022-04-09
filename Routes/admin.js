@@ -29,14 +29,15 @@ router
     console.log("updateMobile hit")
     const result=await mobilephone.findOne({isReviewed:false})
     if(result){
-        // console.log(result);
+        console.log("success"+result);
         res.status(200).json(result);
     }else{
-        res.status(400).json("no data Found");
+        console.log("else"+result);
+        res.status(400).json({data:"No Data Found",error:400});
     }
   }catch(err){
-    console.log(err);
-    res.status(400).json("no data Found");
+    console.log("catch block"+err);
+    res.status(400).json({data:"no data Found"});
   }
 
   })

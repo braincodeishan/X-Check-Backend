@@ -10,13 +10,22 @@ const cors = require('cors');
 
 
 const url = "mongodb+srv://braincodeishan:Mongodb_88822@cluster0.gicls.mongodb.net/XCheck?retryWrites=true&w=majority"
-mongoose.connect(url, () => {
+mongoose.connect(url, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useCreateIndex: true,
+},
+(err) => {
+  if(err){
+    console.log("Error in mongo DB "+err);
+  }else{
     console.log("connection successful to db");
+  }
 })
 
 // **********************Middlewares***********************
 app.use(express.json())
-app.use(express.urlencoded());
+app.use(express.urlencoded({ extended: true }));
 app.use('/search',search);
 app.use('/admin',admin);
 app.use('/updateMobile',updateMobile);
