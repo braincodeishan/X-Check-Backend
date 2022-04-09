@@ -7,8 +7,6 @@ const User = require('../Modals/Users')
 const cookieParser = require("cookie-parser");
 const enckey = process.env.ENCKEY;
 
-router.use(express.json())
-router.use(express.urlencoded({ extended: true }));
 
 router.use(cors({
   origin: 'http://localhost:3000',
@@ -65,22 +63,23 @@ router.get('/logout', async (req, res) => {
 
 router.post('/register', async (req, res) => {
   console.log(req.body);
-  console.log(req.data);
-  const { username, email, password } = req.body;
+  const { username, name, email, mobile, password } = req.body;
   
   if (!username) {
     res.status(204).json({data: "Something went wrong" })
   }
   else if (username.length < 5) {
-    res.status(400).json({ data: "Username is small" })
+    res.status(200).json({ data: "Username is small" })
   }
   else {
     try {
       const hash = await bcrypt.hash(password, 10);
       
       const newUser = new User({
-        username: username,
-        email: email,
+        username,
+        name,
+        email,
+        mobile,
         password: hash
       })
       const regresult=newUser.save()
