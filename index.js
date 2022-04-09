@@ -14,7 +14,7 @@ const url = "mongodb+srv://braincodeishan:Mongodb_88822@cluster0.gicls.mongodb.n
 mongoose.connect(url, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-  useCreateIndex: true,
+  // useCreateIndex: true,
 },
 (err) => {
   if(err){

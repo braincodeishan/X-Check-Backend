@@ -1,18 +1,16 @@
 const express = require('express');
 const cors = require('cors');
-const env = require('dotenv').config();
 const router = express.Router();
 const bcrypt = require('bcrypt');
 const JWT = require('jsonwebtoken')
-const User = require('./Models/Users')
+const User = require('../Modals/Users')
 const cookieParser = require("cookie-parser");
-const uri = process.env.URIL;
 const enckey = process.env.ENCKEY;
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
 
-app.use(cors({
+router.use(express.json())
+router.use(express.urlencoded({ extended: true }));
+
+router.use(cors({
   origin: 'http://localhost:3000',
   credentials: true,
 }));
@@ -66,6 +64,8 @@ router.get('/logout', async (req, res) => {
 
 
 router.post('/register', async (req, res) => {
+  console.log(req.body);
+  console.log(req.data);
   const { username, email, password } = req.body;
   
   if (!username) {
