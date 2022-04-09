@@ -5,6 +5,7 @@ const port =  process.env.PORT || 3001;
 const search = require('./Routes/search')
 const admin = require('./Routes/admin')
 const updateMobile = require('./Routes/updateMobile')
+const User = require('./Routes/User')
 const mongoose=require('mongoose');
 const cors = require('cors');
 
@@ -29,6 +30,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/search',search);
 app.use('/admin',admin);
 app.use('/updateMobile',updateMobile);
+app.use('/User',User);
 
 // CORS Policies
 // var allowedOrigins = [

@@ -33,7 +33,7 @@ router
         res.status(200).json(result);
     }else{
         console.log("else"+result);
-        res.status(400).json({data:"No Data Found",error:400});
+        res.status(200).json({data:"No Data Found",error:400});
     }
   }catch(err){
     console.log("catch block"+err);
