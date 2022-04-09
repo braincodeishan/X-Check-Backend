@@ -77,12 +77,12 @@ router.post('/register', async (req, res) => {
       })
       const regresult=newUser.save()
         if(regresult){
-          res.status(201).json({ data: "User is registered" })
+          res.status(201).json( "Registration Successful!" )
         }else{
-          res.status(400).json({ data: "Something Went Wrong/Please try again" })
+          res.status(200).json( "Something Went Wrong/Please try again" )
         }
     } catch (err) {
-      res.status(404).json({ data: "Something went wrong" })
+      res.status(404).json("Something went wrong" )
     }
   
 })
