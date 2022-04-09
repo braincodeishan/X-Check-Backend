@@ -25,6 +25,7 @@ var allowedOrigins = [
 
 router
 .get('/updateMobile',async(req,res)=>{
+  try{
     console.log("updateMobile hit")
     const result=await mobilephone.findOne({isReviewed:false})
     if(result){
@@ -33,6 +34,11 @@ router
     }else{
         res.status(400).json("no data Found");
     }
+  }catch(err){
+    console.log(err);
+    res.status(400).json("no data Found");
+  }
+
   })
 .post('/updateMobile',(req,res)=>{
     
