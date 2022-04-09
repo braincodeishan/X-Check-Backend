@@ -4,11 +4,12 @@ const app = express();
 const port =  process.env.PORT || 3001;
 const search = require('./Routes/search')
 const admin = require('./Routes/admin')
+const updateMobile = require('./Routes/updateMobile')
 const mongoose=require('mongoose');
 const cors = require('cors');
 
 
-const url = "mongodb+srv://braincodeishan:Mongodb_88822@cluster0.gicls.mongodb.net/GSMARENA?retryWrites=true&w=majority"
+const url = "mongodb+srv://braincodeishan:Mongodb_88822@cluster0.gicls.mongodb.net/XCheck?retryWrites=true&w=majority"
 mongoose.connect(url, () => {
     console.log("connection successful to db");
 })
@@ -18,6 +19,7 @@ app.use(express.json())
 app.use(express.urlencoded());
 app.use('/search',search);
 app.use('/admin',admin);
+app.use('/updateMobile',updateMobile);
 
 // CORS Policies
 var allowedOrigins = [

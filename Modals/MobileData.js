@@ -5,7 +5,7 @@ const mySchema= new mongoose.Schema({
         type:String,
         unique:true
     },
-    image:String,
+    image:Array,
     highlights:Array,
     rating:Number,
     criticRating:Number,
