@@ -22,29 +22,28 @@ app.use('/admin',admin);
 app.use('/updateMobile',updateMobile);
 
 // CORS Policies
-var allowedOrigins = [
-  "https://braincodeishan.github.io",
-  "http://localhost:3000",
-  "https://teal-pony-51118a.netlify.app/",
-  "*"
-];
-app.use(
-  cors({
-    origin: function (origin, callback) {
-      if (!origin) return callback(null, true);
-      if (allowedOrigins.indexOf(origin) === -1) {
-        var msg =
-          "The CORS policy for this site does not " +
-          "allow access from the specified Origin.";
-        return callback(new Error(msg), false);
-      }
-      return callback(null, true);
-    }
-  })
-);
+// var allowedOrigins = [
+//   "https://braincodeishan.github.io",
+//   "http://localhost:3000",
+//   "https://teal-pony-51118a.netlify.app/",
+//   "*"
+// ];
+// app.use(
+//   cors({
+//     origin: function (origin, callback) {
+//       if (!origin) return callback(null, true);
+//       if (allowedOrigins.indexOf(origin) === -1) {
+//         var msg =
+//           "The CORS policy for this site does not " +
+//           "allow access from the specified Origin.";
+//         return callback(new Error(msg), false);
+//       }
+//       return callback(null, true);
+//     }
+//   })
+// );
 
-
-
+app.use(cors());
 
 // **************************Routes*************************
 app.get('/', (req, res) => {

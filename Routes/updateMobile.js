@@ -1,7 +1,8 @@
-var express = require('express');
-var router = express.Router();
-const mongoose = require('mongoose');
+const express = require('express');
+const router = express.Router();
 const mobilephone = require('../Modals/MobileData')
+const cors = require('cors');
+router.use(cors());
 
 
 router.post('/', async (req, res) => {
@@ -401,3 +402,5 @@ router.post('/', async (req, res) => {
     }
 res.end();
 })
+
+module.exports = router;
