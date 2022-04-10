@@ -99,6 +99,7 @@ router.post("/register", async (req, res) => {
       cart: [],
       wishList: [],
       comparePhones: [],
+      type:"CUSTOMER",
       password: hash,
     });
     const regresult = newUser.save();
