@@ -40,7 +40,8 @@ router.post("/login", async (req, res) => {
             avatar:result.avatar,
             cart:result.cart,
             comparePhones:result.comparePhones,
-            wishList:result.wishList
+            wishList:result.wishList,
+            type:result.type
           });
       } else {
         res
