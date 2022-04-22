@@ -6,6 +6,7 @@ const search = require('./Routes/search')
 const admin = require('./Routes/admin')
 const updateMobile = require('./Routes/updateMobile')
 const User = require('./Routes/User')
+const reviews = require('./Routes/reviews')
 const mongoose=require('mongoose');
 const cors = require('cors');
 
@@ -31,6 +32,7 @@ app.use('/search',search);
 app.use('/admin',admin);
 app.use('/updateMobile',updateMobile);
 app.use('/User',User);
+app.use('/reviews',reviews);
 
 // CORS Policies
 // var allowedOrigins = [
