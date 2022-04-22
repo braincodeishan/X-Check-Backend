@@ -58,7 +58,7 @@ app.use(cors());
 
 // **************************Routes*************************
 app.get('/', (req, res) => {
-  res.status(400).json("Not Found")
+  res.status(200).json("You have Reached the app")
   
 }) 
 
@@ -67,7 +67,7 @@ app.post('/feedMobileData',(req,res)=>{
   res.status(200).json("data received")
 })
 
-app.listen(port, () => {
+app.listen(process.env.PORT || port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 })
 
