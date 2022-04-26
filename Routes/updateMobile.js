@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const mobilephone = require('../Modals/MobileData')
+const starsSchema = require('../Modals/reviewsSchema')
 const cors = require('cors');
 router.use(cors());
 
@@ -233,7 +234,7 @@ router.post('/', async (req, res) => {
                     MP: -1,
                     fNumber: -1
                 }
-                
+
             ],
             pVideoResolution: {
                 height: -1,
@@ -320,32 +321,32 @@ router.post('/', async (req, res) => {
             year = 2011;
         } else if (data[3].value.includes("2009")) {
             year = 2009;
-        }else if (data[3].value.includes("2008")) {
+        } else if (data[3].value.includes("2008")) {
             year = 2008;
-        }else if (data[3].value.includes("2007")) {
+        } else if (data[3].value.includes("2007")) {
             year = 2007;
-        }else if (data[3].value.includes("2006")) {
+        } else if (data[3].value.includes("2006")) {
             year = 2006;
         }
 
-        let myDate=Date.parse(month+" 01,"+year);
-        mobileData.announced=myDate;
+        let myDate = Date.parse(month + " 01," + year);
+        mobileData.announced = myDate;
 
-        if(data[7].value.includes("Dual Sim")){
-            mobileData.dualSim=true;
+        if (data[7].value.includes("Dual Sim")) {
+            mobileData.dualSim = true;
         }
 
-        if(data[8].value.includes("IP68")){
-            mobileData.ipxRating="IP68";
-        }else if(data[8].value.includes("IP67")){
-            mobileData.ipxRating="IP67";
-        }else if(data[8].value.includes("IP66")){
-            mobileData.ipxRating="IP66";
-        }else if(data[8].value.includes("IP65")){
-            mobileData.ipxRating="IP65";
+        if (data[8].value.includes("IP68")) {
+            mobileData.ipxRating = "IP68";
+        } else if (data[8].value.includes("IP67")) {
+            mobileData.ipxRating = "IP67";
+        } else if (data[8].value.includes("IP66")) {
+            mobileData.ipxRating = "IP66";
+        } else if (data[8].value.includes("IP65")) {
+            mobileData.ipxRating = "IP65";
         }
 
-        
+
 
         const mobile = new mobilephone({
             name: myName,
@@ -366,7 +367,7 @@ router.post('/', async (req, res) => {
             announced: mobileData.announced,
             weight: mobileData.weight,
             dualSim: mobileData.dualSim,        //done
-            ipxRating: mobileData.ipxRating,    
+            ipxRating: mobileData.ipxRating,
             displayType: mobileData.displayType,
             displayHz: mobileData.displayHz,
             displayResolutionHeight: mobileData.displayResolutionHeight,
@@ -388,8 +389,18 @@ router.post('/', async (req, res) => {
 
         const result = await mobile.save();
         if (result) {
-            res.status(200).json('OK')
-            console.log("Data Posted to DB");
+            const stars = new starsSchema({
+                phoneId: result._id
+            })
+            const resultStar = await stars.save();
+            if (resultStar) {
+                res.status(200).json('OK')
+                console.log("Data Posted to DB");
+            } else {
+                console.log("Data not posted to DB");
+                res.status(400).json(err);
+            }
+
         } else {
             console.log("Data not posted to DB");
             res.status(400).json(err);
@@ -400,7 +411,7 @@ router.post('/', async (req, res) => {
     } catch (err) {
         res.status(401).json(err);
     }
-res.end();
+    res.end();
 })
 
 module.exports = router;

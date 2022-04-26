@@ -28,3 +28,32 @@ const mySchema= new mongoose.Schema({
 const reviewsSchema = mongoose.model('Review',mySchema);
 
 module.exports=reviewsSchema;
+
+
+const stars= new mongoose.Schema({
+    phoneId:String,
+    fiveStar:{
+        type:Number,
+        default:0
+    },
+    fourStar:{
+        type:Number,
+        default:0
+    },
+    threeStar:{
+        type:Number,
+        default:0
+    },
+    towStar:{
+        type:Number,
+        default:0
+    },
+    oneStar:{
+        type:Number,
+        default:0
+    },
+})
+
+const starsSchema = mongoose.model('Star',stars);
+
+module.exports=starsSchema;
