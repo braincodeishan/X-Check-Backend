@@ -25,9 +25,13 @@ const mySchema= new mongoose.Schema({
 })
 
 
-const reviewsSchema = mongoose.model('Review',mySchema);
+const reviews = mongoose.model('Review',mySchema);
 
-module.exports=reviewsSchema;
+// module.exports=;
+
+
+
+
 
 
 const stars= new mongoose.Schema({
@@ -56,4 +60,7 @@ const stars= new mongoose.Schema({
 
 const starsSchema = mongoose.model('Star',stars);
 
-module.exports=starsSchema;
+module.exports={
+    starsSchema,
+    reviews
+}

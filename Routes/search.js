@@ -14,7 +14,7 @@ router
   })
 .post('/',(req,res)=>{
   const filters=req.body;
-  console.log(filters);
+  // console.log(filters);
   
   res.status(200).json("Data Received")
 })
