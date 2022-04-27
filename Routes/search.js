@@ -12,11 +12,12 @@ router
     
     res.status(200).json("Data Received")
   })
-.post('/',(req,res)=>{
+.post('/',async(req,res)=>{
   const filters=req.body;
-  // console.log(filters);
+  const result= await mobilephone.find();
+
   
-  res.status(200).json("Data Received")
+  res.status(200).json(result)
 })
 
 module.exports = router;

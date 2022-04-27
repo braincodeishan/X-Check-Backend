@@ -22,6 +22,6 @@ const mySchema= new mongoose.Schema({
 })
 
 
-const imageSchema = mongoose.model('Image',mySchema);
+const imageSchema = mongoose.model('Camera_Image',mySchema);
 
 module.exports=imageSchema;

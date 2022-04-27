@@ -1,6 +1,6 @@
 const mongoose=require('mongoose');
 
-const mySchema= new mongoose.Schema({
+const userReviewSchema= new mongoose.Schema({
     name:{
         type:String,
     },
@@ -25,42 +25,62 @@ const mySchema= new mongoose.Schema({
 })
 
 
-const reviews = mongoose.model('Review',mySchema);
-
-// module.exports=;
+const userReviews = mongoose.model('User_Review',userReviewSchema);
 
 
 
-
-
-
-const stars= new mongoose.Schema({
+const critiqueReviewSchema= new mongoose.Schema({
+    name:{
+        type:String,
+    },
+    username:String,
+    title:String,
+    description:String,
+    stars:Number,
     phoneId:String,
-    fiveStar:{
-        type:Number,
-        default:0
+    date:{
+        type:Date,
+        default:Date.now()
     },
-    fourStar:{
+    likes:{
         type:Number,
-        default:0
+        default:0,
     },
-    threeStar:{
-        type:Number,
-        default:0
-    },
-    towStar:{
-        type:Number,
-        default:0
-    },
-    oneStar:{
-        type:Number,
-        default:0
-    },
+    image:{
+        type:String,
+        default:"https://www.photographyblog.com/uploads/entryImages/_1280xAUTO_crop_center-center_none/apple_iphone_13_pro_review.jpg",
+    }
+    
 })
 
-const starsSchema = mongoose.model('Star',stars);
+
+const criticReviews = mongoose.model('Critic_Review',critiqueReviewSchema);
+
+
+
+const userStarSchema= new mongoose.Schema({
+    phoneId:String,
+    value:{
+        type:Array,
+        default:[0,0,0,0,0]
+    }
+})
+
+const userStar = mongoose.model('User_Star',userStarSchema);
+
+const critiqueStarSchema= new mongoose.Schema({
+    phoneId:String,
+    value:{
+        type:Array,
+        default:[0,0,0,0,0]
+    }
+})
+
+const criticStar = mongoose.model('Critic_Star',critiqueStarSchema);
 
 module.exports={
-    starsSchema,
-    reviews
+    userStar,
+    userReviews,
+    criticReviews,
+    criticStar
 }
