@@ -7,11 +7,27 @@ const mobilephone=require('../Modals/MobileData')
 router.use(cors());
 
 router
-.get('/',(req,res)=>{
-    console.log("Search get hit")
+.get('/mobiles', async(req,res)=>{
+  try{
+    console.log("hit")
+    // const phoneId  = req.params['id']
+    const result = await mobilephone.findById('6252bea4445e5b9e89105b49');
+    if(result){
+      res.status(200).json(result)  
+    }else{
+      res.status(204).json("Something went wrong")  ;
+    }
+  
+
+  } catch(err) {
+    res.status(404).json("Something went wrong")  ;
+  }
     
-    res.status(200).json("Data Received")
+    
   })
+
+
+
 .post('/',async(req,res)=>{
   const filters=req.body;
   const result= await mobilephone.find();
