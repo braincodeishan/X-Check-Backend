@@ -10,8 +10,8 @@ router
 .get('/mobiles', async(req,res)=>{
   try{
     console.log("hit")
-    // const phoneId  = req.params['id']
-    const result = await mobilephone.findById('6252bea4445e5b9e89105b49');
+    const phoneId  = req.params['id']
+    const result = await mobilephone.findById(phoneId);
     if(result){
       res.status(200).json(result)  
     }else{
