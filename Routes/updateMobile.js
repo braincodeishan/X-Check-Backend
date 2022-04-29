@@ -12,7 +12,7 @@ router.post('/', async (req, res) => {
     try {
         let a = req.body.a;
         let myName = req.body.myName;
-        // console.log(myName);
+        console.log(myName);
         let data
             = [
                 { sl: 0, name: "Technology", value: "" },
@@ -410,6 +410,7 @@ router.post('/', async (req, res) => {
 
     } catch (err) {
         res.status(401).json(err);
+        console.log(err);
     }
     res.end();
 })
