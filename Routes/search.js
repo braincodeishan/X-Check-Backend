@@ -12,7 +12,9 @@ router
     console.log("hit")
     const phoneId  = req.params['id']
     const result = await mobilephone.findById(phoneId);
+    console.log(result)
     if(result){
+      
       res.status(200).json(result)  
     }else{
       res.status(204).json("Something went wrong")  ;
@@ -29,10 +31,10 @@ router
 
 
 .post('/',async(req,res)=>{
-  const filters=req.body;
-  const result= await mobilephone.find();
-
-  
+  const {price,processors,ram,primaryCamera,display,brands}=req.body;
+  // console.log(filters);
+  const result= await mobilephone.find({price: {$gte: price[0], $lte:price[1]}});
+  console.log(result)
   res.status(200).json(result)
 })
 

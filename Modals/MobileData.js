@@ -11,7 +11,14 @@ const mySchema= new mongoose.Schema({
     criticRating:Number,
     star: Number,
     price: Number,
-    priceList:Array,
+    priceList:{
+        type:Object,
+        default:{
+            amazon:0,
+            flipkart:0,
+            tatacliq:0
+        }
+    },
     specification:Array,
     photos: Array,
     xCheckRating:Number,
