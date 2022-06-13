@@ -6,7 +6,7 @@ console.log(specs);
 let a = [];
 let i = 0, index = 0, j=0;
 const tables = specs.getElementsByTagName('table');
-console.log(tables)
+console.log(tables);
 let tdElement, dataElement, thelement;
 for(j=0;j<tables.length;j++)
 {
@@ -49,7 +49,7 @@ for(j=0;j<tables.length;j++)
 
 };
 
-// console.log(a);
+
 
 fetch('http://localhost:3001/updateMobile', {
     method: 'POST',

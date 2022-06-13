@@ -10,7 +10,7 @@ router
 .get('/mobiles', async(req,res)=>{
   try{
     console.log("hit")
-    const phoneId  = req.params['id']
+    const phoneId  = req.query.id
     const result = await mobilephone.findById(phoneId);
     console.log(result)
     if(result){
@@ -22,6 +22,7 @@ router
   
 
   } catch(err) {
+    console.log(err);
     res.status(404).json("Something went wrong")  ;
   }
     

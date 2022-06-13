@@ -2,6 +2,11 @@ const express = require('express');
 const router = express.Router();
 const mobilephone = require('../Modals/MobileData')
 const starsSchema = require('../Modals/reviewsSchema')
+const { userReviews } = require("../Modals/reviewsSchema");
+const { criticReviews } = require("../Modals/reviewsSchema");
+const imageSchema = require("../Modals/imageSchema");
+const { userStar } = require("../Modals/reviewsSchema");
+const { criticStar } = require("../Modals/reviewsSchema");
 const cors = require('cors');
 router.use(cors());
 
@@ -345,13 +350,22 @@ router.post('/', async (req, res) => {
         } else if (data[8].value.includes("IP65")) {
             mobileData.ipxRating = "IP65";
         }
+        let highlights = [
+            data[0].value,
+            data[19].value,
+            data[20].value,
+            data[13].value,
+            data[15].value,
+            data[34].value,
+            data[35].value
+        ]
 
 
 
         const mobile = new mobilephone({
             name: myName,
             image: [],
-            highlights: [],
+            highlights: highlights,
             rating: 0,
             criticRating: 0,
             star: 0,
@@ -389,16 +403,25 @@ router.post('/', async (req, res) => {
 
         const result = await mobile.save();
         if (result) {
-            const stars = new starsSchema({
+            const userStars = new userStar({
                 phoneId: result._id
             })
-            const resultStar = await stars.save();
-            if (resultStar) {
+            const criticStars = new criticStar({
+                phoneId: result._id
+            })
+            const resultUserStar = await userStars.save();
+            const resultCriticStar = await criticStars.save();
+            if (resultUserStar && resultCriticStar) {
                 res.status(200).json('OK')
                 console.log("Data Posted to DB");
             } else {
-                console.log("Data not posted to DB");
-                res.status(400).json(err);
+                const delUserStar = await userStar.findOneAndDelete({ phoneId: result._id });
+                const delCriticStar = await criticStar.findOneAndDelete({ phoneId: result._id });
+                if (delUserStar && delCriticStar) {
+                    console.log("Data not posted to DB");
+                    res.status(400).json(err);
+                }
+
             }
 
         } else {

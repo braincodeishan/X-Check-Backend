@@ -48,16 +48,19 @@ router.post("/login", async (req, res) => {
           });
       } else {
         res
-          .status(400)
+          .status(204)
           .json({ error: "Login unsuccessful, Invalid Username/Password" });
+          console.log("1")
       }
     } else {
       res
-        .status(400)
+        .status(204)
         .json({ error: "Login unsuccessful, Invalid Username/Password" });
+        console.log("2")
     }
   } catch (err) {
     res.status(404).json({ Error: "Something Went wrong in " + err });
+    console.log("3")
   }
 });
 
