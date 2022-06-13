@@ -364,15 +364,12 @@ router.post('/', async (req, res) => {
 
         const mobile = new mobilephone({
             name: myName,
-            image: [],
             highlights: highlights,
             rating: 0,
             criticRating: 0,
             star: 0,
             price: 0,
-            priceList: [],
             specification: data,
-            photos: [],
             xCheckRating: mobileData.xCheckRating,
             twoG: mobileData.twoG,
             threeG: mobileData.threeG,

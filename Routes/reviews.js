@@ -16,13 +16,17 @@ router
     try {
       const id = req.body.id;
       const result = await userReviews.find({ phoneId: id });
-      var starResult = await userStar.find({ phoneId: id });
+      var starResult = await userStar.findOne({ phoneId: id });
       if (starResult.length===0) {
         starResult = {
           phoneId:id,
           value:[100,70,100,400,400]
         }
       }
+
+      console.log(result)
+      console.log(starResult)
+      
 
       if (result && starResult) {
         res.status(200).json({ result, starResult });
@@ -41,7 +45,7 @@ router
     try {
       const id = req.body.id;
       const result = await criticReviews.find({ phoneId: id });
-      var starResult = await criticStar.find({ phoneId: id });
+      var starResult = await criticStar.findOne({ phoneId: id });
       if (starResult.length===0) {
         starResult = {
           phoneId:id,

@@ -35,7 +35,7 @@ router
   const {price,processors,ram,primaryCamera,display,brands}=req.body;
   // console.log(filters);
   const result= await mobilephone.find({price: {$gte: price[0], $lte:price[1]}});
-  console.log(result)
+  // console.log(result)
   res.status(200).json(result)
 })
 

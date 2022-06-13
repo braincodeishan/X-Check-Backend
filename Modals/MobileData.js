@@ -5,7 +5,10 @@ const mySchema= new mongoose.Schema({
         type:String,
         unique:true
     },
-    image:Array,
+    image:{
+        type:Array,
+        default:['https://ik.imagekit.io/e5d019f0b85d/abc1_mE1801jBn.jpg']
+    },
     highlights:Array,
     rating:Number,
     criticRating:Number,
@@ -20,7 +23,6 @@ const mySchema= new mongoose.Schema({
         }
     },
     specification:Array,
-    photos: Array,
     xCheckRating:Number,
     twoG:Boolean,
     threeG:Boolean,
